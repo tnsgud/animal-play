@@ -1,20 +1,30 @@
 import styled from 'styled-components';
 
 export const Wrapper = styled.div`
+  display: flex;
+  flex-direction: column;
   height: 100vh;
-  background-color: ${(props) => props.theme.bgColor};
-  color: ${(props) => props.theme.textColor};
 `;
 
-export const Poster = styled.img`
+export const PageWrapper = styled.div`
+  flex: 1;
+  background-color: transparent;
+`;
+
+export const Backdrop = styled.img`
   width: 300px;
   height: 150px;
-  opacity: 0.1;
+  opacity: 0.5;
 
   &:hover {
     opacity: 1;
-    scale: 1.4;
+    scale: 1.1;
   }
 
   transition: opacity scale 0.5s;
+`;
+
+export const Poster = styled.img`
+  width: 150px;
+  height: 200px;
 `;

@@ -1,8 +1,8 @@
 import { createBrowserRouter } from 'react-router-dom';
 import Home from './routes/Home';
 import Movie from './components/Movie';
-import ComingSoon from './routes/Coming-soon';
-import NowPlaying from './routes/Now-playing';
+import ComingSoon from './routes/ComingSoon';
+import NowPlaying from './routes/NowPlaying';
 import App from './App';
 
 export const router = createBrowserRouter([

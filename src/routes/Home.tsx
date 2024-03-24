@@ -1,7 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
-import { IAPIResponse, getPopular, makeBgPath, makeImagePath } from '../api';
-import { Wrapper, Poster } from '../style';
-import { Link } from 'react-router-dom';
+import { IAPIResponse, genreList, getPopular } from '../api';
+import { PageWrapper } from '../style';
+import GenreList from '../components/GenreList';
 
 export default function Home() {
   const { data } = useQuery<IAPIResponse>({
@@ -9,13 +9,27 @@ export default function Home() {
     queryFn: getPopular,
   });
 
+  const movie = genreList
+    .map((g) => {
+      const movies = data?.results.filter((m) => m.genre_ids.includes(g.id));
+      if (!movies) return { ...g, movies: [] };
+
+      return {
+        ...g,
+        movies,
+      };
+    })
+    .filter((g) => g.movies.length);
+
   return (
-    <Wrapper>
-      {data?.results.map((m) => (
-        <Link to={`/movies/${m.id}`}>
-          <Poster src={makeBgPath(m.backdrop_path)} />
-        </Link>
+    <PageWrapper>
+      {movie.map((g) => (
+        <GenreList
+          key={`genre-list-${g.id}`}
+          title={g.name}
+          movies={g.movies}
+        />
       ))}
-    </Wrapper>
+    </PageWrapper>
   );
 }
