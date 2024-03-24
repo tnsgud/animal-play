@@ -36,6 +36,20 @@ export function getOrdinal(n: number) {
   return ord;
 }
 
+export function getMoviesSeparatedByGenre(data: IMovie[]) {
+  return genreList
+    .map((g) => {
+      const movies = data.filter((m) => m.genre_ids.includes(g.id));
+      if (!movies) return { ...g, movies: [] };
+
+      return {
+        ...g,
+        movies,
+      };
+    })
+    .filter((g) => g.movies.length);
+}
+
 export function getPopular() {
   return fetch(`${BASE_URL}/popular`).then((r) => r.json());
 }

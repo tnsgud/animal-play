@@ -2,6 +2,7 @@ import { useQuery } from '@tanstack/react-query';
 import {
   IAPIResponse,
   genreList,
+  getMoviesSeparatedByGenre,
   getOrdinal,
   getPopular,
   makeBgPath,
@@ -54,17 +55,7 @@ export default function Home() {
     .sort((a, b) => b.vote_average - a.vote_average)
     .slice(0, 5);
 
-  const movie = genreList
-    .map((g) => {
-      const movies = data.results.filter((m) => m.genre_ids.includes(g.id));
-      if (!movies) return { ...g, movies: [] };
-
-      return {
-        ...g,
-        movies,
-      };
-    })
-    .filter((g) => g.movies.length);
+  const movies = getMoviesSeparatedByGenre(data.results);
 
   return (
     <PageWrapper>
@@ -82,7 +73,7 @@ export default function Home() {
         </TopMovies>
       </TopMovieWrapper>
 
-      {movie.map((g) => (
+      {movies.map((g) => (
         <GenreList
           key={`genre-list-${g.id}`}
           title={g.name}

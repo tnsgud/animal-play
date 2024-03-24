@@ -15,7 +15,7 @@ export const Backdrop = styled.img`
   width: 300px;
   height: 150px;
   opacity: 0.4;
-  border-radius: 10px;
+  border-radius: 20px;
 
   &:hover {
     opacity: 1;
