@@ -14,17 +14,22 @@ export const PageWrapper = styled.div`
 export const Backdrop = styled.img`
   width: 300px;
   height: 150px;
-  opacity: 0.5;
+  opacity: 0.4;
+  border-radius: 10px;
 
   &:hover {
     opacity: 1;
     scale: 1.1;
   }
-
-  transition: opacity scale 0.5s;
 `;
 
 export const Poster = styled.img`
   width: 150px;
   height: 200px;
+`;
+
+export const Title = styled.span`
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
 `;

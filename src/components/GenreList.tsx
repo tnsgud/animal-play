@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { IMovie, makeBgPath } from '../api';
 import { Link } from 'react-router-dom';
-import { Backdrop } from '../style';
+import { Backdrop, Title } from '../style';
 
 interface Props {
   title: string;
@@ -11,12 +11,7 @@ interface Props {
 const GenreWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 1rem;
   padding: 1rem;
-`;
-const GenreTitle = styled.span`
-  font-size: 2rem;
-  font-weight: bold;
 `;
 const GenreMovies = styled.div`
   width: 100%;
@@ -34,7 +29,7 @@ const GenreMovies = styled.div`
 export default function GenreList({ title, movies }: Props) {
   return (
     <GenreWrapper>
-      <GenreTitle>{title}</GenreTitle>
+      <Title>{title}</Title>
       <GenreMovies>
         {movies.map((m) => {
           return (
